@@ -12,7 +12,13 @@ int main() {
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	SDL_Window* window = SDL_CreateWindow("OpenGL Program", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow (
+		"OpenGL Program",
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+		640, 
+		480, 
+		SDL_WINDOW_OPENGL
+	);
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
 	GLenum status = glewInit();
@@ -23,8 +29,9 @@ int main() {
 	}
 
 	while(!isClosed) {
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		static const GLfloat color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		glClearBufferfv(GL_COLOR, 0, color);
 
 		SDL_GL_SwapWindow(window);
 		SDL_Event e;
