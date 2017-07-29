@@ -24,7 +24,7 @@ SOURCE_PARSER = $(PROJECT_DIR)/Parser/Source/
 HEADER_PARSER = $(PROJECT_DIR)/Parser/Headers/
 
 #Opengl, sdl libs
-LIB_LINK = -LGL #-ldl -lX11 -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor -lGL -lpthread
+LIB_LINK = -lGL -lGLEW -lSDL2  #-ldl -lX11 -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor -lGL -lpthread
 
 #COMPILE ALL
 all: $(EXE_FS)Simulation $(EXE_GUI)GUI $(EXE_PARSER)Parser
