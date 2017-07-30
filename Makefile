@@ -4,12 +4,12 @@ MAKE = g++ -std=c++11
 PROJECT_DIR = /home/holynerd/Desktop/theValleyProject/
 
 #Field simulation dir
-EXE_FS = $(PROJECT_DIR)/FieldSimulation/
-SOURCE_FS = $(PROJECT_DIR)/FieldSimulation/Source/
-INCLUDE_FS = $(PROJECT_DIR)/FieldSimulation/Include/
-HEADER_FS = $(PROJECT_DIR)/FieldSimulation/Headers/
-SHADER = $(PROJECT_DIR)/FieldSimulation/Shaders/
-LIB = $(PROJECT_DIR)/Libs/
+EXE_FS = $(PROJECT_DIR)
+SOURCE_FS = $(PROJECT_DIR)FieldSimulation/Source/
+INCLUDE_FS = $(PROJECT_DIR)FieldSimulation/Include/
+HEADER_FS = $(PROJECT_DIR)FieldSimulation/Headers/
+SHADER = $(PROJECT_DIR)FieldSimulation/Shaders/
+LIB = $(PROJECT_DIR)Libs/
 
 #GUI simulation dir
 EXE_GUI = $(PROJECT_DIR)/GUI/
@@ -27,16 +27,18 @@ HEADER_PARSER = $(PROJECT_DIR)/Parser/Headers/
 LIB_LINK = -lGL -lGLEW -lSDL2  #-ldl -lX11 -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor -lGL -lpthread
 
 #COMPILE ALL
-all: $(EXE_FS)Simulation $(EXE_GUI)GUI $(EXE_PARSER)Parser
+all: $(EXE_FS)Application $(EXE_GUI)GUI $(EXE_PARSER)Parser
 
 #FIELD_SIMULATION_COMPILE
-FieldSimulation: $(EXE_FS)Simulation
+FieldSimulation: $(EXE_FS)Application 
 
-$(EXE_FS)Simulation: $(SOURCE_FS)main.o 
-	$(MAKE) -o $(EXE_FS)Simulation $(SOURCE_FS)main.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
+$(EXE_FS)Application: $(SOURCE_FS)Application.o $(HEADER_FS)Application.h $(SOURCE_FS)FieldSimulation.o $(HEADER_FS)FieldSimulation.h
+	$(MAKE) -o $(EXE_FS)Application $(SOURCE_FS)Application.o $(SOURCE_FS)FieldSimulation.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
 
-$(SOURCE_FS)main.o: $(SOURCE_FS)main.cpp 
-	$(MAKE) -c $(SOURCE_FS)main.cpp -o $(SOURCE_FS)main.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+$(SOURCE_FS)FieldSimulation.o: $(SOURCE_FS)FieldSimulation.cpp $(HEADER_FS)Application.h $(HEADER_FS)FieldSimulation.h
+	$(MAKE) -c $(SOURCE_FS)FieldSimulation.cpp -o $(SOURCE_FS)FieldSimulation.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+$(SOURCE_FS)Application.o: $(SOURCE_FS)Application.cpp $(HEADER_FS)Application.h
+	$(MAKE) -c $(SOURCE_FS)Application.cpp -o $(SOURCE_FS)Application.o -I$(INCLUDE_FS) -I$(HEADER_FS)
 
 #GUI_COMPILE
 GUI: $(EXE_GUI)GUI
