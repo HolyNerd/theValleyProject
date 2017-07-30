@@ -12,7 +12,9 @@ void FieldSimulation::start() {
 }
 
 void FieldSimulation::update() {
+	static const GLfloat white[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	
+	glClearBufferfv(GL_COLOR, 0, white);
 }
 
 void FieldSimulation::shutdown() {
