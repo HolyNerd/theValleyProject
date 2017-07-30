@@ -1,5 +1,6 @@
 #include <Application.h>
 
+#include <iostream>
 #include <fstream>
 #include <string>
 
@@ -36,7 +37,7 @@ protected:
 		const char* shaderSrc = shaderStr.c_str();
 
 		glShaderSource(shader, 1, &shaderSrc, NULL);
-		glCompileShader(shaderSrc);
+		glCompileShader(shader);
 
 		return shader;
 	}
@@ -44,3 +45,5 @@ protected:
 private:
 	
 };
+
+MAIN(FieldSimulation)

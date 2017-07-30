@@ -12,13 +12,12 @@ void FieldSimulation::start() {
 }
 
 void FieldSimulation::update() {
-	static const GLfloat white[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	static const GLfloat bhColor[] = { 0.2f, 0.4f, 0.7f, 1.0f };
 	
-	glClearBufferfv(GL_COLOR, 0, white);
+	glClearBufferfv(GL_COLOR, 0, bhColor);
 }
 
 void FieldSimulation::shutdown() {
 	
 }
 
-MAIN(FieldSimulation)
