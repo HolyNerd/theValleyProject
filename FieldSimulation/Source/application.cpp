@@ -1,4 +1,4 @@
-#include <Application.h>
+#include <application.h>
 
 Application::Application() : 
 	_win_title {"OpenGL Application"},

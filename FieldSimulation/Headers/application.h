@@ -7,7 +7,7 @@
 class Application {
 public:
 	Application();
-	~Application();
+	virtual ~Application();
 
 	bool applicationClosed();
 	void sdlSwapBuffers();
