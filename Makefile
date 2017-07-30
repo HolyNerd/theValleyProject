@@ -32,10 +32,10 @@ all: $(EXE_FS)Application $(EXE_GUI)GUI $(EXE_PARSER)Parser
 #FIELD_SIMULATION_COMPILE
 FieldSimulation: $(EXE_FS)Application 
 
-$(EXE_FS)Application: $(SOURCE_FS)Application.o $(HEADER_FS)Application.h $(SOURCE_FS)FieldSimulation.o $(HEADER_FS)FieldSimulation.h
+$(EXE_FS)Application: $(SOURCE_FS)Application.o $(HEADER_FS)Application.h $(SOURCE_FS)FieldSimulation.o $(HEADER_FS)FieldSimulation.h $(SHADER)*glsl
 	$(MAKE) -o $(EXE_FS)Application $(SOURCE_FS)Application.o $(SOURCE_FS)FieldSimulation.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
 
-$(SOURCE_FS)FieldSimulation.o: $(SOURCE_FS)FieldSimulation.cpp $(HEADER_FS)Application.h $(HEADER_FS)FieldSimulation.h
+$(SOURCE_FS)FieldSimulation.o: $(SOURCE_FS)FieldSimulation.cpp $(HEADER_FS)Application.h $(HEADER_FS)FieldSimulation.h $(SHADER)*glsl
 	$(MAKE) -c $(SOURCE_FS)FieldSimulation.cpp -o $(SOURCE_FS)FieldSimulation.o -I$(INCLUDE_FS) -I$(HEADER_FS)
 $(SOURCE_FS)Application.o: $(SOURCE_FS)Application.cpp $(HEADER_FS)Application.h
 	$(MAKE) -c $(SOURCE_FS)Application.cpp -o $(SOURCE_FS)Application.o -I$(INCLUDE_FS) -I$(HEADER_FS)

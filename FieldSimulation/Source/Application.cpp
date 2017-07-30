@@ -29,7 +29,7 @@ void Application::init() {
 		_win_y_position,
 		_win_width,
 		_win_height,
-		SDL_WINDOW_OPENGL
+		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
 	);
 
 	_gl_context = SDL_GL_CreateContext(_gl_win);
@@ -65,4 +65,7 @@ void Application::update() {
 }
 void Application::shutdown() {
 
+}
+void Application::isResized() {
+	
 }

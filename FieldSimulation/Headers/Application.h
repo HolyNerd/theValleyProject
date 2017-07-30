@@ -17,6 +17,8 @@ public:
 	virtual void start();
 	virtual void update();
 	virtual void shutdown();
+	
+	virtual void isResized();
 protected:
 	bool isClosed;
 
