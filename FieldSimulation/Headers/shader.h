@@ -25,6 +25,8 @@ public:
 	const status getStatus() const;
 	const status shaderData(const unsigned int, const char**, const GLenum*);
 
+	void deleteShader();
+
 private:
 	GLuint _program;
 

@@ -1,19 +1,17 @@
 #include <application.h>
 #include <shader.h>
+#include <object.h>
 
-class FieldSimulation : public Application {
+class mainProgram : public Application {
 public:
 	void init();
 	void start();
 	void update();
 	void shutdown();
 
-protected:	
-
 private:
-	Shader shader;
-	GLuint program;
+	Object* o;
 };
 
 
-MAIN(FieldSimulation)
+MAIN(mainProgram)

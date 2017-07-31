@@ -26,7 +26,9 @@ Shader::Shader (
 
 Shader::~Shader() { }
 
-
+void Shader::deleteShader() {
+	glDeleteProgram(_program);
+}
 
 const Shader::status Shader::getStatus() const {
 	return _status;
@@ -111,9 +113,10 @@ const Shader::status Shader::createProgram (
 
 	glLinkProgram(_program);
 
-	for(int i = 0; i < amount; i++)
+	for(int i = 0; i < amount; i++) {
+		glDetachShader(_program, shaders[i]);
 		glDeleteShader(shaders[i]);
-
+	}
 	if(!linkSuccess()) {
 		state = "LINK ERROR ";
 		glGetProgramInfoLog(_program, 512, nullptr, infoLog);

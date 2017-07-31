@@ -27,22 +27,28 @@ HEADER_PARSER = $(PROJECT_DIR)/Parser/Headers/
 LIB_LINK = -lGL -lGLEW -lSDL2  #-ldl -lX11 -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor -lGL -lpthread
 
 #COMPILE ALL
-all: $(EXE_FS)Application $(EXE_GUI)GUI $(EXE_PARSER)Parser
+all: $(EXE_FS)main $(EXE_GUI)GUI $(EXE_PARSER)Parser
 
 #FIELD_SIMULATION_COMPILE
-FieldSimulation: $(EXE_FS)Application 
+main: $(EXE_FS)main 
 
-$(EXE_FS)Application: $(SOURCE_FS)shader.o $(HEADER_FS)shader.h $(SOURCE_FS)application.o $(HEADER_FS)application.h $(SOURCE_FS)fieldSimulation.o $(HEADER_FS)fieldSimulation.h $(SHADER)*glsl 
-	$(MAKE) -o $(EXE_FS)Application $(SOURCE_FS)shader.o $(SOURCE_FS)application.o $(SOURCE_FS)fieldSimulation.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
+$(EXE_FS)main: $(SOURCE_FS)object.o $(SOURCE_FS)vertex.o $(HEADER_FS)vertex.h $(HEADER_FS)object.h $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o  $(SOURCE_FS)shader.o $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h  $(HEADER_FS)shader.h 
+	$(MAKE) -o $(EXE_FS)main $(SOURCE_FS)shader.o $(SOURCE_FS)vertex.o $(SOURCE_FS)object.o  $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
 
-$(SOURCE_FS)fieldSimulation.o: $(SOURCE_FS)fieldSimulation.cpp $(HEADER_FS)application.h $(HEADER_FS)fieldSimulation.h $(SHADER)*glsl
-	$(MAKE) -c $(SOURCE_FS)fieldSimulation.cpp -o $(SOURCE_FS)fieldSimulation.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+$(SOURCE_FS)mainProgram.o: $(SOURCE_FS)mainProgram.cpp $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h $(SHADER)*glsl
+	$(MAKE) -c $(SOURCE_FS)mainProgram.cpp -o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS)
 
 $(SOURCE_FS)application.o: $(SOURCE_FS)application.cpp $(HEADER_FS)application.h
 	$(MAKE) -c $(SOURCE_FS)application.cpp -o $(SOURCE_FS)application.o -I$(INCLUDE_FS) -I$(HEADER_FS)
 
 $(SOURCE_FS)shader.o: $(SOURCE_FS)shader.cpp $(HEADER_FS)shader.h
 	$(MAKE) -c $(SOURCE_FS)shader.cpp -o $(SOURCE_FS)shader.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
+$(SOURCE_FS)vertex.o: $(SOURCE_FS)vertex.cpp $(HEADER_FS)vertex.h
+	$(MAKE) -c $(SOURCE_FS)vertex.cpp -o $(SOURCE_FS)vertex.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
+$(SOURCE_FS)object.o: $(SOURCE_FS)object.cpp $(HEADER_FS)object.h
+	$(MAKE) -c $(SOURCE_FS)object.cpp -o $(SOURCE_FS)object.o -I$(INCLUDE_FS) -I$(HEADER_FS)
 
 #GUI_COMPILE
 GUI: $(EXE_GUI)GUI

@@ -1,11 +1,11 @@
 #version 450 core
 
-vec4 verts[] = vec4[3] (
-	vec4(-0.25f, -0.25f, 0.25f, 1.0f),
-	vec4(0.0f, 0.25f, 0.25f, 1.0f),
-	vec4(0.25f, -0.25f, 0.25f, 1.0f)
-);
+layout (location = 0) in vec3 position;
+layout (location = 1) in vec3 color;
+
+out vec3 oColor;
 
 void main(void) {
-	gl_Position = verts[gl_VertexID];
+	gl_Position = vec4(position.xyz, 1.0f);
+	oColor = color;
 }
