@@ -1,4 +1,5 @@
 #include <application.h>
+#include <shader.h>
 
 class FieldSimulation : public Application {
 public:
@@ -10,6 +11,7 @@ public:
 protected:	
 
 private:
+	Shader shader;
 	GLuint program;
 };
 
