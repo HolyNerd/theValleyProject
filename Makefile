@@ -32,8 +32,8 @@ all: $(EXE_FS)main $(EXE_GUI)GUI $(EXE_PARSER)Parser
 #FIELD_SIMULATION_COMPILE
 main: $(EXE_FS)main 
 
-$(EXE_FS)main: $(SOURCE_FS)object.o $(SOURCE_FS)vertex.o $(HEADER_FS)vertex.h $(HEADER_FS)object.h $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o  $(SOURCE_FS)shader.o $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h  $(HEADER_FS)shader.h 
-	$(MAKE) -o $(EXE_FS)main $(SOURCE_FS)shader.o $(SOURCE_FS)vertex.o $(SOURCE_FS)object.o  $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
+$(EXE_FS)main: $(SOURCE_FS)grid.o $(HEADER_FS)grid.h $(HEADER_FS)color.h $(SOURCE_FS)charge.o $(HEADER_FS)charge.h $(SOURCE_FS)object.o $(SOURCE_FS)vertex.o $(HEADER_FS)vertex.h $(HEADER_FS)object.h $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o  $(SOURCE_FS)shader.o $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h  $(HEADER_FS)shader.h 
+	$(MAKE) -o $(EXE_FS)main $(SOURCE_FS)grid.o $(SOURCE_FS)charge.o $(SOURCE_FS)shader.o $(SOURCE_FS)vertex.o $(SOURCE_FS)object.o  $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
 
 $(SOURCE_FS)mainProgram.o: $(SOURCE_FS)mainProgram.cpp $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h $(SHADER)*glsl
 	$(MAKE) -c $(SOURCE_FS)mainProgram.cpp -o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS)
@@ -49,6 +49,13 @@ $(SOURCE_FS)vertex.o: $(SOURCE_FS)vertex.cpp $(HEADER_FS)vertex.h
 
 $(SOURCE_FS)object.o: $(SOURCE_FS)object.cpp $(HEADER_FS)object.h
 	$(MAKE) -c $(SOURCE_FS)object.cpp -o $(SOURCE_FS)object.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
+$(SOURCE_FS)charge.o: $(SOURCE_FS)charge.cpp $(HEADER_FS)charge.h
+	$(MAKE) -c $(SOURCE_FS)charge.cpp -o $(SOURCE_FS)charge.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
+$(SOURCE_FS)grid.o: $(SOURCE_FS)grid.cpp $(HEADER_FS)grid.h
+	$(MAKE) -c $(SOURCE_FS)grid.cpp -o $(SOURCE_FS)grid.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
 
 #GUI_COMPILE
 GUI: $(EXE_GUI)GUI

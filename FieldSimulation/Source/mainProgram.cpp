@@ -1,38 +1,32 @@
 #include <mainProgram.h>
 
+
 void mainProgram::init() {
 
-	_win_width = 900;
-	_win_height = 800;
+	_win_width = 500;
+	_win_height = 500;
 
 	Application::init();
 }
 
 void mainProgram::start() {
-	GLfloat color[] = { 0.0, 0.0, 0.0, 0.0 };
+	GLfloat color[] = { (201)/255.0f, (237)/255.0f, (227)/255.0f };
 	glClearBufferfv(GL_COLOR, 0, color);
-	o = new Object(3);
 
-	o->setVertexCoordinate(0, 0.5f, 0.5f, 0.5f);
-	o->setVertexCoordinate(1, 0.5f, -0.5f, 0.5f);
-	o->setVertexCoordinate(2, -0.5f, -0.5f, 0.5f);
-
-	o->setVertexColor(0, (170)/255.0f, (114)/255.0f, (255)/255.0f);
-	o->setVertexColor(1, (114)/255.0f, (255)/255.0f, (131)/255.0f);
-	o->setVertexColor(2, (255)/255.0f, (117)/255.0f, (114)/255.0f);
-
-	Vertex vert;
-	vert.setCoordinate(0.1f, 0.2f, 0.5f);
-	vert.setColor((109)/255.0f, (230)/255.0f, 1.0f);
-
-	o->addVertex(vert);
-
-	o->setType(GL_POINTS);
+	grid = new Grid(50, 500, 500);
+	charge = new Charge[5];;
+	charge[0].move(0.5f, 0.5f, false);
+	charge[1].move(-0.1, -0.3, false);
+	charge[1].setCharge(Charge::NEGATIVE);
+	
+	
 }
 
 void mainProgram::update() {
-	glPointSize(4.0f);
-	o->Draw();
+	grid->Draw();
+	for(int i = 0; i < 2; i++)
+		charge[i].Draw();
+
 }
 
 void mainProgram::shutdown() {

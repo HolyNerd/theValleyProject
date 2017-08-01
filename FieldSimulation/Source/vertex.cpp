@@ -8,6 +8,11 @@ Vertex::Vertex()
 
 }
 
+Vertex::Vertex(GLfloat x, GLfloat y, GLfloat z) 
+{
+	setCoordinate(x, y, z);
+}
+
 Vertex::Vertex(GLfloat* newCoordinate) 
 	:color { 1.0f, 1.0f, 1.0f }
 {
@@ -115,6 +120,24 @@ void VertexArray::add(GLfloat x, GLfloat y, GLfloat z, GLfloat r, GLfloat g, GLf
 	array[amount - 1].setColor(r, g, b);
 }
 
+void VertexArray::add(int count) { 
+	Vertex* backup = new Vertex[amount];
+
+	for(int i = 0; i < amount; i++) {
+		backup[i] = array[i];
+	}
+
+	delete[] array;
+
+	array = new Vertex[amount + count];
+
+	for(int i = 0; i < amount; i++) {
+		array[i] = backup[i];
+	}
+
+	amount += count;
+}
+
 GLfloat* VertexArray::getData() {
 	GLfloat* data = new GLfloat[6 * amount];
 	int dataIterator = 0;
@@ -137,4 +160,12 @@ GLfloat* VertexArray::getData() {
 
 int VertexArray::getAmount() const {
 	return amount;
+}
+
+void VertexArray::move(float value[2]) {
+	for(int i = 0; i < amount; i++) {
+		GLfloat* vertCoord = array[i].getCoordinate();
+		vertCoord[0] += value[0];
+		vertCoord[1] += value[1];
+	}
 }

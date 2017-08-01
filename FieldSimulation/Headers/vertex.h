@@ -7,6 +7,7 @@
 class Vertex {
 public:
 	Vertex();
+	Vertex(GLfloat, GLfloat, GLfloat);
 	Vertex(GLfloat* newCoordinate);
 	Vertex(GLfloat* newCoordinate, GLfloat* newColor);
 	Vertex(const Vertex& rhs);
@@ -35,6 +36,9 @@ public:
 	
 	void add(GLfloat* coord, GLfloat* color);
 	void add(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat);
+	void add(int count);
+
+	void move(float value[2]);
 
 	Vertex& operator[](int index);
 

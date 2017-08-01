@@ -1,6 +1,8 @@
 #include <application.h>
 #include <shader.h>
 #include <object.h>
+#include <charge.h>
+#include <grid.h>
 
 class mainProgram : public Application {
 public:
@@ -10,7 +12,8 @@ public:
 	void shutdown();
 
 private:
-	Object* o;
+	Charge* charge;
+	Grid* grid;
 };
 
 

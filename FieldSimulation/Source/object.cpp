@@ -1,6 +1,14 @@
 #include <object.h>
 
-Object::Object(int amount) : va(amount), changed{ true }
+Object::Object() : va(0), changed{true}
+{
+	GLenum st[2] = {GL_VERTEX_SHADER, GL_FRAGMENT_SHADER };
+	const char* sn[2] = { "vertShader.glsl", "fragShader.glsl" };
+
+	shader.shaderData(2, sn, st);
+}
+
+Object::Object(int amount) : va(amount), changed{ true }, res{1.0f, 1.0f}
 {
 
 	GLenum st[2] = {GL_VERTEX_SHADER, GL_FRAGMENT_SHADER };
@@ -19,8 +27,13 @@ void Object::setVertexColor(int index, GLfloat r, GLfloat g, GLfloat b) {
 	changed = true;	
 }
 
-void Object::addVertex(Vertex& vert) {
+void Object::addVertex(Vertex vert) {
 	va.add(vert.getCoordinate(), vert.getColor());
+}
+
+
+void Object::addVertex(int amount) {
+	va.add(amount);	
 }
 
 void Object::setType(GLenum t) {
@@ -47,7 +60,7 @@ void Object::update() {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)0);
 	GLsizeiptr coffset = sizeof(GLfloat)*3;
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (void*)coffset);
-	std::cout << &data[3] << std::endl;
+
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 
@@ -64,4 +77,43 @@ void Object::Draw() {
 	glBindVertexArray(vao);
 	shader.bindShader();
 	glDrawArrays(type, 0, va.getAmount());
+}
+
+void Object::move(float value[2]) {
+	va.move(value);
+	changed = true;
+}
+
+void Object::move(float value[2], bool normalize) {
+	if(!normalize)
+		move(value);
+	else
+		move(value, res[0], res[1]);
+
+	changed = true;
+}
+void Object::move(float x, float y, bool normalize) {
+	float off[2] = {x, y};
+	
+	if(!normalize)
+		move(off);
+	else
+		move(off, res[0], res[1]);
+
+	changed = true;
+}
+
+void Object::move(float value[2], float width, float height) {
+	value[0] = value[0] / width;
+	value[1] = value[1] / height;
+
+	va.move(value);
+	changed = true;
+}
+
+void Object::addRes(float width, float height) {
+	res[0] = width;
+	res[1] = height;
+
+	changed = true;
 }
