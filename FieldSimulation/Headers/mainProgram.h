@@ -3,17 +3,20 @@
 #include <object.h>
 #include <charge.h>
 #include <grid.h>
+#include <canvas.h>
 
 class mainProgram : public Application {
 public:
+	mainProgram();
+
 	void init();
 	void start();
 	void update();
 	void shutdown();
 
 private:
-	Charge* charge;
-	Grid* grid;
+	Canvas canvas;
+	Grid grid;
 };
 
 

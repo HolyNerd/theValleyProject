@@ -33,7 +33,7 @@ protected:
 private:
 };
 
-#define MAIN(CLASS) CLASS c; int main() {c.init(); c.start(); while(!c.applicationClosed()) {c.update(); c.sdlSwapBuffers(); c.sdlPollEvents(); } c.shutdown();}
+#define MAIN(CLASS)  CLASS c; int main() { c.init(); c.start(); while(!c.applicationClosed()) {c.update(); c.sdlSwapBuffers(); c.sdlPollEvents(); } c.shutdown();}
 
 class GLEW_INIT_ERROR { };
 

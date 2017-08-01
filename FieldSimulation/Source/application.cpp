@@ -7,15 +7,6 @@ Application::Application() :
 	_win_x_position { SDL_WINDOWPOS_CENTERED },
 	_win_y_position { SDL_WINDOWPOS_CENTERED }
 {
-	
-}
-Application::~Application() {
-	SDL_GL_DeleteContext(_gl_context);
-	SDL_DestroyWindow(_gl_win);
-	SDL_Quit();
-}
-
-void Application::init() {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -38,6 +29,15 @@ void Application::init() {
 	if(status != GLEW_OK) {
 		throw GLEW_INIT_ERROR();
 	}
+}
+Application::~Application() {
+	SDL_GL_DeleteContext(_gl_context);
+	SDL_DestroyWindow(_gl_win);
+	SDL_Quit();
+}
+
+void Application::init() {
+	
 }
 
 bool Application::applicationClosed() {

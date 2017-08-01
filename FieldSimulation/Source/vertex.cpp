@@ -9,18 +9,20 @@ Vertex::Vertex()
 }
 
 Vertex::Vertex(GLfloat x, GLfloat y, GLfloat z) 
+	: coordinate{ 0.0f, 0.0f, 0.0f }, color{ 1.0f, 1.0f, 1.0f }
 {
 	setCoordinate(x, y, z);
 }
 
 Vertex::Vertex(GLfloat* newCoordinate) 
-	:color { 1.0f, 1.0f, 1.0f }
+	: coordinate{ 0.0f, 0.0f, 0.0f }, color{ 1.0f, 1.0f, 1.0f }
 {
-		for(int i = 0; i < 3; i++)
+	for(int i = 0; i < 3; i++)
 		coordinate[i] = newCoordinate[i];
 }
 
 Vertex::Vertex(GLfloat* newCoordinate, GLfloat* newColor) 
+	: coordinate{ 0.0f, 0.0f, 0.0f }, color{ 1.0f, 1.0f, 1.0f }
 {	
 	for(int i = 0; i < 3; i++)
 		coordinate[i] = newCoordinate[i];
@@ -29,7 +31,9 @@ Vertex::Vertex(GLfloat* newCoordinate, GLfloat* newColor)
 		color[i] = newColor[i];
 }
 
-Vertex::Vertex(const Vertex& rhs) {
+Vertex::Vertex(const Vertex& rhs) 
+	: coordinate{ 0.0f, 0.0f, 0.0f }, color{ 1.0f, 1.0f, 1.0f }
+{
 	for(int i = 0; i < 3; i++)
 		coordinate[i] = rhs.coordinate[i];
 		
@@ -65,6 +69,12 @@ void Vertex::setColor(GLfloat r, GLfloat g, GLfloat b) {
 	color[0] = r;
 	color[1] = g;
 	color[2] = b;
+}
+
+VertexArray::VertexArray() 
+	: amount{ 1 }
+{
+	array = new Vertex[amount];
 }
 
 VertexArray::VertexArray(int newAmount) 

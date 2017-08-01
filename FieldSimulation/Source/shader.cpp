@@ -43,6 +43,8 @@ const Shader::status Shader::shaderData (
 	const char** shadersNames, 
 	const GLenum shadersTypes[]) 
 {
+
+
 	_shaders_amount = shadersAmount;
 	_shaders_names = shadersNames;
 	_shaders_types = shadersTypes;
@@ -52,7 +54,7 @@ const Shader::status Shader::shaderData (
 		_shaders_types, 
 		_shaders_names
 	);
-
+	
 	return _status;
 }
 
@@ -75,13 +77,17 @@ std::string Shader::getShaderSource(const std::string path) {
 	return content;
 }
 void Shader::createShader(const GLenum& type, const char* fName, GLuint& shader) {
+
 	shader = glCreateShader(type);
 
 	std::string shaderStr = getShaderSource(shadersPath + fName);
+
 	const char* shaderSrc = shaderStr.c_str();
 
 	glShaderSource(shader, 1, &shaderSrc, NULL);
+
 	glCompileShader(shader);
+
 }
 
 const Shader::status Shader::createProgram (
@@ -90,13 +96,13 @@ const Shader::status Shader::createProgram (
 	const char** shadersNames
 ) 
 {
+	
 	_program = glCreateProgram();
-
 	GLuint* shaders = new GLuint[amount];
 
 	for(int i = 0; i < amount; i++) {
 		createShader(types[i], shadersNames[i], shaders[i]);
-
+		
 		if(!compilationSuccess(shaders[i])) {
 			state = "COMPILATION ERROR IN :";
 			state += shadersNames[i];

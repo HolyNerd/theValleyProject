@@ -1,5 +1,5 @@
 
-MAKE = g++ -std=c++11 
+MAKE = g++ -std=c++11 -g -pthread
 
 PROJECT_DIR = /home/holynerd/Desktop/theValleyProject/
 
@@ -32,8 +32,8 @@ all: $(EXE_FS)main $(EXE_GUI)GUI $(EXE_PARSER)Parser
 #FIELD_SIMULATION_COMPILE
 main: $(EXE_FS)main 
 
-$(EXE_FS)main: $(SOURCE_FS)grid.o $(HEADER_FS)grid.h $(HEADER_FS)color.h $(SOURCE_FS)charge.o $(HEADER_FS)charge.h $(SOURCE_FS)object.o $(SOURCE_FS)vertex.o $(HEADER_FS)vertex.h $(HEADER_FS)object.h $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o  $(SOURCE_FS)shader.o $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h  $(HEADER_FS)shader.h 
-	$(MAKE) -o $(EXE_FS)main $(SOURCE_FS)grid.o $(SOURCE_FS)charge.o $(SOURCE_FS)shader.o $(SOURCE_FS)vertex.o $(SOURCE_FS)object.o  $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
+$(EXE_FS)main: $(SOURCE_FS)parser.o $(HEADER_FS)parser.h $(SOURCE_FS)canvas.o $(HEADER_FS)canvas.h $(SOURCE_FS)grid.o $(HEADER_FS)grid.h $(HEADER_FS)color.h $(SOURCE_FS)charge.o $(HEADER_FS)charge.h $(SOURCE_FS)object.o $(SOURCE_FS)vertex.o $(HEADER_FS)vertex.h $(HEADER_FS)object.h $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o  $(SOURCE_FS)shader.o $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h  $(HEADER_FS)shader.h 
+	$(MAKE) -o $(EXE_FS)main  $(SOURCE_FS)parser.o $(SOURCE_FS)canvas.o $(SOURCE_FS)grid.o $(SOURCE_FS)charge.o $(SOURCE_FS)shader.o $(SOURCE_FS)vertex.o $(SOURCE_FS)object.o  $(SOURCE_FS)application.o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS) -L$(LIB) $(LIB_LINK) 
 
 $(SOURCE_FS)mainProgram.o: $(SOURCE_FS)mainProgram.cpp $(HEADER_FS)application.h $(HEADER_FS)mainProgram.h $(SHADER)*glsl
 	$(MAKE) -c $(SOURCE_FS)mainProgram.cpp -o $(SOURCE_FS)mainProgram.o -I$(INCLUDE_FS) -I$(HEADER_FS)
@@ -55,6 +55,12 @@ $(SOURCE_FS)charge.o: $(SOURCE_FS)charge.cpp $(HEADER_FS)charge.h
 
 $(SOURCE_FS)grid.o: $(SOURCE_FS)grid.cpp $(HEADER_FS)grid.h
 	$(MAKE) -c $(SOURCE_FS)grid.cpp -o $(SOURCE_FS)grid.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
+$(SOURCE_FS)canvas.o: $(SOURCE_FS)canvas.cpp $(HEADER_FS)canvas.h
+	$(MAKE) -c $(SOURCE_FS)canvas.cpp -o $(SOURCE_FS)canvas.o -I$(INCLUDE_FS) -I$(HEADER_FS)
+
+$(SOURCE_FS)parser.o: $(SOURCE_FS)parser.cpp $(HEADER_FS)parser.h
+	$(MAKE) -c $(SOURCE_FS)parser.cpp -o $(SOURCE_FS)parser.o -I$(INCLUDE_FS) -I$(HEADER_FS)
 
 
 #GUI_COMPILE

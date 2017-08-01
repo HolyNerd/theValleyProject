@@ -29,6 +29,7 @@ private:
 
 class VertexArray {
 public:
+	VertexArray();
 	VertexArray(int newAmount);
 	
 	GLfloat* getData();

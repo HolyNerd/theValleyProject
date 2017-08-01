@@ -1,7 +1,8 @@
 #include <object.h>
 
-Object::Object() : va(0), changed{true}
+Object::Object() : va(0), changed{true}, shader()
 {
+
 	GLenum st[2] = {GL_VERTEX_SHADER, GL_FRAGMENT_SHADER };
 	const char* sn[2] = { "vertShader.glsl", "fragShader.glsl" };
 

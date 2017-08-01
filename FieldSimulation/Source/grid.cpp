@@ -22,11 +22,10 @@ Grid::Grid(float offset, int width, int height) {
 		va[i+1].setCoordinate(-1.0f, off, 0.0f);
 	}
 
-	gridColor.r = 190/255.0f;
-	gridColor.b = 219/255.0;
-	gridColor.g = 211/255.0;
-
-	for(int i = 0; i < va.getAmount(); i++)
+	gridColor.r = 220/255.0f;
+	gridColor.b = 220/255.0f;
+	gridColor.g = 220/255.0f;
+	
+	for(int i = 0; i < va.getAmount(); i++) 
 		va[i].setColor(gridColor.r, gridColor.g, gridColor.b);
-
 }

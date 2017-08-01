@@ -21,6 +21,16 @@
 		"system_error": "cpp",
 		"type_traits": "cpp",
 		"typeinfo": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"array": "cpp",
+		"chrono": "cpp",
+		"ctime": "cpp",
+		"functional": "cpp",
+		"memory": "cpp",
+		"ratio": "cpp",
+		"sstream": "cpp",
+		"thread": "cpp",
+		"tuple": "cpp",
+		"utility": "cpp"
 	}
 }
